@@ -1,0 +1,8 @@
+LISTA DE PERMISOS
+<ul>
+  {% for per in permisos %}
+  <li><a href="{% url 'ver_permiso' per.id %}"> {{permiso.nombre_permiso}}</a></li>
+  {% endfor %}
+</ul>
+
+<a href='{% url "crear_permiso" %}'> <button>Ir a Crear Permiso</button></a>

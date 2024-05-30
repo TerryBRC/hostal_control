@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Rol
-from .forms import RolForm
+from .models import Rol, Permiso
+from .forms import RolForm, PermisoForm
+
+# CRUD ROLES
 
 
 def listar_roles(request):
@@ -53,3 +55,45 @@ def eliminar_rol(request, rol_id):
     rol.delete()  # Eliminar el rol de la base de datos
     # Redirigir a la lista de roles después de eliminar
     return redirect('listar_roles')
+
+# CRUD PERMISOS
+
+
+def listar_permisos(request):
+    permisos = Permiso.objects.all()
+    return render(request, 'listar_permisos.html', {'permisos': permisos})
+
+
+def crear_permiso(request):
+    if request == 'POST':
+        form = PermisoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_permisos')
+    else:
+        form = PermisoForm()
+    return render(request, 'crear_permiso.html', {'form': form})
+
+
+def ver_permiso(request, permiso_id):
+    permiso = get_object_or_404(Permiso, pk=permiso_id)
+    return render(request, 'ver_permiso.html', {'permiso': permiso})
+
+
+def actualizar_permiso(request, permiso_id):
+    permiso = get_object_or_404(Permiso, pk=permiso_id)
+    if request.method == 'POST':
+        form = PermisoForm(request.POST, instance=permiso)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_permisos')
+        form = PermisoForm(instance=permiso)
+    return render(request, 'actualizar_permiso.html', {'form': form, 'permiso': permiso})
+
+
+def eliminar_permiso(request, permiso_id):
+    # Obtener el rol específico según su ID
+    permiso = get_object_or_404(Permiso, pk=permiso_id)
+    permiso.delete()  # Eliminar el rol de la base de datos
+    # Redirigir a la lista de roles después de eliminar
+    return redirect('listar_permisos')

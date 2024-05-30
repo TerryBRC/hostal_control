@@ -1,8 +1,0 @@
-LISTA DE ROLES
-<ul>
-  {% for rol in roles %}
-  <li><a href="{% url 'ver_rol' rol.id %}"> {{rol.nombre_rol}}</a></li>
-  {% endfor %}
-</ul>
-
-<a href='{% url "crear_rol" %}'> <button>Ir a Crear Rol</button></a>
