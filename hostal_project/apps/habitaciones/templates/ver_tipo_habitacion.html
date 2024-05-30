@@ -1,0 +1,17 @@
+<h1>INFORMACION TIPO DE HABITACIONES</h1>
+<hr />
+<h3>Tipo:</h3>
+<p>{{tipo_habitacion.tipo_habitacion}}</p>
+<h3>Descripcion:</h3>
+<p>{{tipo_habitacion.descripcion}}</p>
+
+<a href='{% url "listar_tipo_habitaciones" %}'
+  ><button>Ir a tipos de Habitaciones</button></a
+>
+<a href='{% url "editar_tipo_habitacion" tipo_habitacion.id %}'
+  ><button>Actualizar Habitacion</button></a
+>
+
+<a href='{% url "eliminar_tipo_habitacion" tipo_habitacion.id %}'
+  ><button>Eliminar Habitacion</button></a
+>

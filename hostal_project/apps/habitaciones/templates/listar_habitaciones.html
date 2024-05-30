@@ -1,0 +1,16 @@
+HABITACIONES
+<ul>
+  {% for h in habitaciones %}
+  <li>
+    <a href="{% url 'ver_habitacion' h.id %}">
+      {{h.numero_habitacion}} - {% if h.disponible %} Disponible {% else %} No Disponible {% endif %}</a>
+  </li>
+  {% endfor %}
+</ul>
+
+<a href='{% url "crear_habitacion" %}'
+  ><button>Ir a Crear Habitacion</button></a
+>
+<a href='{% url "listar_tipo_habitaciones" %}'
+  ><button>Ir a Tipo de Habitacion</button></a
+>

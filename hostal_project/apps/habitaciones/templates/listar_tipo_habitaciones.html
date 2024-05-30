@@ -1,0 +1,13 @@
+TIPOS DE HABITACIONES
+<ul>
+  {% for th in tipo_habitaciones %}
+  <li>
+    <a href="{% url 'ver_tipo_habitacion' th.id %}"> {{th.tipo_habitacion}}</a>
+  </li>
+  {% endfor %}
+</ul>
+
+<a href='{% url "crear_tipo_habitacion" %}'
+  ><button>Ir a Crear Tipo de Habitacion</button></a
+>
+<a href='{% url "listar_habitaciones" %}'><button>Habitaciones</button></a>
