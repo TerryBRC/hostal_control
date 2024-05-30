@@ -1,0 +1,9 @@
+<h1>Crear Rol</h1>
+<hr />
+<form method="POST">
+  {% csrf_token %} {{form}}
+  <input type="submit" value="Crear" />
+</form>
+<a href='{% url "listar_roles" %}'>
+  <button>Ir a Lista de Roles</button>
+</a>
