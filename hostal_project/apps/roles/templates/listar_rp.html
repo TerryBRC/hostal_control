@@ -1,0 +1,22 @@
+<h1>LISTA DE PERMISOS DE CADA ROL</h1>
+<a href='{% url "crear_rolpermiso" %}'
+  ><button>Ir a Crear Rol-Permiso</button></a
+>
+<a href='{% url "listar_roles" %}'> <button>Ir a Roles</button></a>
+<a href='{% url "listar_permisos" %}'> <button>Ir a Permisos</button></a>
+
+<hr>
+<div style="display: flex">
+  {% for rol, permisos in roles_permisos_dict.items %}
+  <strong>{{ rol }}</strong>
+  <ul>
+    {% for permiso_info in permisos %}
+    <li>
+      <a href="{% url 'ver_rolpermiso' permiso_info.id %}">
+        {{ permiso_info.permiso }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
+</div>

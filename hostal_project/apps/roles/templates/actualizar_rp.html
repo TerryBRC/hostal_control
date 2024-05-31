@@ -1,0 +1,7 @@
+<h1>ACTUALIZAR ROLES - PERMISOS</h1>
+<a href='{% url "listar_rolpermisos" %}'><button>Ir a Lista roles-permisos</button></a>
+<hr />
+<form method="POST">
+  {% csrf_token %} {{form.as_p}}
+  <input type="submit" value="Actualizar" />
+</form>

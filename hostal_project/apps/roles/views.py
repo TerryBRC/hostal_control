@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Rol, Permiso
-from .forms import RolForm, PermisoForm
+from .models import Rol, Permiso, RolPermiso
+from .forms import RolForm, PermisoForm, RolPermisoForm
 
 # CRUD ROLES
 
@@ -65,7 +65,7 @@ def listar_permisos(request):
 
 
 def crear_permiso(request):
-    if request == 'POST':
+    if request.method == 'POST':
         form = PermisoForm(request.POST)
         if form.is_valid():
             form.save()
@@ -87,6 +87,7 @@ def actualizar_permiso(request, permiso_id):
         if form.is_valid():
             form.save()
             return redirect('listar_permisos')
+    else:
         form = PermisoForm(instance=permiso)
     return render(request, 'actualizar_permiso.html', {'form': form, 'permiso': permiso})
 
@@ -97,3 +98,57 @@ def eliminar_permiso(request, permiso_id):
     permiso.delete()  # Eliminar el rol de la base de datos
     # Redirigir a la lista de roles después de eliminar
     return redirect('listar_permisos')
+
+
+# CRUD ROL PERMISOS
+
+
+def listar_rolpermisos(request):
+    rolpermisos = RolPermiso.objects.select_related('rol', 'permiso').order_by('rol', 'permiso')
+
+    roles_permisos_dict = {}
+    for rp in rolpermisos:
+        if rp.rol not in roles_permisos_dict:
+            roles_permisos_dict[rp.rol] = []
+        roles_permisos_dict[rp.rol].append(
+            {'permiso': rp.permiso, 'id': rp.id})
+
+    return render(request, 'listar_rp.html', {'roles_permisos_dict': roles_permisos_dict})
+    # rolpermisos = RolPermiso.objects.all()
+    # return render(request, 'listar_rp.html', {'rolpermisos': rolpermisos})
+
+
+def crear_rolpermiso(request):
+    if request.method == 'POST':
+        form = RolPermisoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_rolpermisos')
+    else:
+        form = RolPermisoForm()
+    return render(request, 'crear_rp.html', {'form': form})
+
+
+def ver_rolpermiso(request, rp_id):
+    rolpermiso = get_object_or_404(RolPermiso, pk=rp_id)
+    return render(request, 'ver_rp.html', {'rolpermiso': rolpermiso})
+
+
+def actualizar_rolpermiso(request, rp_id):
+    rolpermiso = get_object_or_404(RolPermiso, pk=rp_id)
+    if request.method == 'POST':
+        form = RolPermisoForm(request.POST, instance=rolpermiso)
+        if form.is_valid():
+            form.save()
+            return redirect('listar_rolpermisos')
+    else:
+        form = RolPermisoForm(instance=rolpermiso)
+    return render(request, 'actualizar_rp.html', {'form': form, 'rolpermiso': rolpermiso})
+
+
+def eliminar_rolpermiso(request, rp_id):
+    # Obtener el rol específico según su ID
+    rolpermiso = get_object_or_404(RolPermiso, pk=rp_id)
+    rolpermiso.delete()  # Eliminar el rol de la base de datos
+    # Redirigir a la lista de roles después de eliminar
+    return redirect('listar_rolpermisos')

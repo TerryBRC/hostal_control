@@ -1,8 +1,11 @@
-LISTA DE ROLES
+<h1>LISTA DE ROLES</h1>
+<a href='{% url "crear_rol" %}'> <button>Ir a Crear Rol</button></a>
+<a href='{% url "listar_rolpermisos" %}'> <button>Ir a Rol - Permiso</button></a>
+<a href='{% url "listar_permisos" %}'> <button>Ir a Permisos</button></a>
+<hr>
 <ul>
   {% for rol in roles %}
   <li><a href="{% url 'ver_rol' rol.id %}"> {{rol.nombre_rol}}</a></li>
   {% endfor %}
 </ul>
 
-<a href='{% url "crear_rol" %}'> <button>Ir a Crear Rol</button></a>
