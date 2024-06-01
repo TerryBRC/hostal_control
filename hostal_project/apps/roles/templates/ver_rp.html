@@ -1,15 +1,13 @@
-<h1>INFORMACION DEL ROL-PERMISO</h1>
-<a href='{% url "listar_rolpermisos" %}'
-  ><button>Ir a Lista de permisos</button></a
->
-<a href='{% url "actualizar_rolpermiso" rolpermiso.id %}'
-  ><button>Actualizar</button></a
->
-<a href='{% url "eliminar_rolpermiso" rolpermiso.id %}'
-  ><button>Eliminar</button></a
->
-<hr />
+{% block title %}Info Rol-Permiso{% endblock %}
+{% block header %}INFORMACION DEL ROL-PERMISO{% endblock %}
+{% block lista_botones %}
+<a href='{% url "listar_rolpermisos" %}'><button>Ir a Lista de permisos</button></a>
+<a href='{% url "actualizar_rolpermiso" rolpermiso.id %}'><button>Actualizar</button></a>
+<a href='{% url "eliminar_rolpermiso" rolpermiso.id %}'><button>Eliminar</button></a>
+{% endblock %}
+{% block content %}
 <h3>Permiso:</h3>
 <p>{{rolpermiso.rol}}</p>
 <h3>Descripcion:</h3>
 <p>{{rolpermiso.permiso}}</p>
+{% endblock %} 

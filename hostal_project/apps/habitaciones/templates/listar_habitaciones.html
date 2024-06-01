@@ -1,4 +1,13 @@
-HABITACIONES
+{% block title %}Listar Habitaciones{% endblock %}
+
+{% block header %}HABITACIONES{% endblock %}
+
+{% block lista_botones %}
+<a href='{% url "crear_habitacion" %}'><button>Ir a Crear Habitacion</button></a>
+<a href='{% url "listar_tipo_habitaciones" %}'><button>Ir a Tipo de Habitacion</button></a>
+{% endblock %}
+
+{% block content %}
 <ul>
   {% for h in habitaciones %}
   <li>
@@ -7,10 +16,6 @@ HABITACIONES
   </li>
   {% endfor %}
 </ul>
+{% endblock %}
 
-<a href='{% url "crear_habitacion" %}'
-  ><button>Ir a Crear Habitacion</button></a
->
-<a href='{% url "listar_tipo_habitaciones" %}'
-  ><button>Ir a Tipo de Habitacion</button></a
->
+

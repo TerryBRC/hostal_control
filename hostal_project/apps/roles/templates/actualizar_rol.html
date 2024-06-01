@@ -1,8 +1,10 @@
-<h1>ACTUALIZAR ROL</h1>
-<hr />
+{% block title %}Actualizar Rol{% endblock %}
+{% block header %}ACTUALIZAR ROL{% endblock %}
+{% block lista_botones %}<a href='{% url "listar_roles" %}'><button>Ir a Lista de Roles</button></a>{% endblock %}
+{% block content %}
 <form method="POST">
   {% csrf_token %} 
   {{form.as_p}}
   <input type="submit" value="Actualizar" />
 </form>
-<a href='{% url "listar_roles" %}'><button>Ir a Lista de Roles</button></a>
+{% endblock %} 

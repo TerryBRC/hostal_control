@@ -1,9 +1,10 @@
-<h1>Crear Permiso</h1>
-<hr />
+{% block title %}Crear Permiso{% endblock %}
+{% block header %}CREAR PERMISO{% endblock %}
+{% block lista_botones %}
+<a href='{% url "listar_permisos" %}'><button>Ir a Lista de permisos</button></a>{% endblock %}
+{% block content %}
 <form method="POST">
   {% csrf_token %} {{form.as_p}}
   <input type="submit" value="Guardar" />
 </form>
-<a href='{% url "listar_permisos" %}'>
-  <button>Ir a Lista de permisos</button>
-</a>
+{% endblock %} 

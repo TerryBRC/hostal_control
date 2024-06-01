@@ -1,9 +1,11 @@
-<h1>Crear Rol</h1>
-<hr />
+{% block title %}Crear Rol{% endblock %}
+{% block header %}CREAR ROL{% endblock %}
+{% block lista_botones %}
+<a href='{% url "listar_roles" %}'><button>Ir a Lista de Roles</button></a>
+{% endblock %}
+{% block content %}
 <form method="POST">
   {% csrf_token %} {{form.as_p}}
   <input type="submit" value="Guardar" />
 </form>
-<a href='{% url "listar_roles" %}'>
-  <button>Ir a Lista de Roles</button>
-</a>
+{% endblock %} 

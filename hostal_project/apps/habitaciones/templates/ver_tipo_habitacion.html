@@ -1,17 +1,12 @@
-<h1>INFORMACION TIPO DE HABITACIONES</h1>
-<hr />
+{% block title %}Info Tipo de Habitación{% endblock %}
+{% block header %}INFORMACION TIPO DE HABITACIONES{% endblock %}
+{% block lista_botones %}
+<a href='{% url "listar_tipo_habitaciones" %}'><button>Ir a tipos de Habitaciones</button></a>
+<a href='{% url "editar_tipo_habitacion" tipo_habitacion.id %}'><button>Actualizar Habitacion</button></a>
+<a href='{% url "eliminar_tipo_habitacion" tipo_habitacion.id %}'><button>Eliminar Habitacion</button></a>{% endblock %}
+{% block content %}
 <h3>Tipo:</h3>
 <p>{{tipo_habitacion.tipo_habitacion}}</p>
 <h3>Descripcion:</h3>
 <p>{{tipo_habitacion.descripcion}}</p>
-
-<a href='{% url "listar_tipo_habitaciones" %}'
-  ><button>Ir a tipos de Habitaciones</button></a
->
-<a href='{% url "editar_tipo_habitacion" tipo_habitacion.id %}'
-  ><button>Actualizar Habitacion</button></a
->
-
-<a href='{% url "eliminar_tipo_habitacion" tipo_habitacion.id %}'
-  ><button>Eliminar Habitacion</button></a
->
+{% endblock %} 

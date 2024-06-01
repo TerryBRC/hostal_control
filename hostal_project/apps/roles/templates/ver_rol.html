@@ -1,11 +1,12 @@
-<h1>INFORMACION DEL ROL</h1>
-<hr />
-<h3>Rol:</h3>
+{% block title %}Info Rol{% endblock %}
+{% block header %}INFORMACION DEL ROL{% endblock %}
+{% block lista_botones %}
+<a href='{% url "listar_roles" %}'><button>Ir a Lista de Roles</button></a>
+<a href='{% url "actualizar_rol" rol.id %}'><button>Actualizar</button></a>
+<a href='{% url "eliminar_rol" rol.id %}'><button>Eliminar</button></a>
+{% endblock %}
+{% block content %}<h3>Rol:</h3>
 <p>{{rol.nombre_rol}}</p>
 <h3>Descripcion:</h3>
 <p>{{rol.descripcion}}</p>
-
-<a href='{% url "listar_roles" %}'><button>Ir a Lista de Roles</button></a>
-<a href='{% url "actualizar_rol" rol.id %}'><button>Actualizar</button></a>
-
-<a href='{% url "eliminar_rol" rol.id %}'><button>Eliminar</button></a>
+{% endblock %} 

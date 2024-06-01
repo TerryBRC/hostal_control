@@ -1,5 +1,11 @@
-<h1>INFORMACION DE LA HABITACION</h1>
-<hr />
+{% block title %}Info Habitación{% endblock %}
+{% block header %}INFORMACION DE LA HABITACION{% endblock %}
+{% block lista_botones %}
+<a href='{% url "listar_habitaciones" %}'><button>Ir a Lista de Habitaciones</button></a>
+<a href='{% url "editar_habitacion" habitacion.id %}'><button>Actualizar Habitacion</button></a>
+<a href='{% url "eliminar_habitacion" habitacion.id %}'><button>Eliminar Habitacion</button></a>
+{% endblock %}
+{% block content %}
 <h3>Habitacion #:</h3>
 <p>{{habitacion.numero_habitacion}}</p>
 <h3>Tipo:</h3>
@@ -13,13 +19,4 @@
   {% if habitacion.disponible %} Disponible {% else %} No Disponible {% endif %}
 </p>
 
-<a href='{% url "listar_habitaciones" %}'
-  ><button>Ir a Lista de Habitaciones</button></a
->
-<a href='{% url "editar_habitacion" habitacion.id %}'
-  ><button>Actualizar Habitacion</button></a
->
-
-<a href='{% url "eliminar_habitacion" habitacion.id %}'
-  ><button>Eliminar Habitacion</button></a
->
+{% endblock %} 

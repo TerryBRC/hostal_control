@@ -1,8 +1,12 @@
-<h1>Crear Tipo de Habitación</h1>
+{% extends "base.html" %}
+{% block title %}Crear Tipo de Habitación{% endblock %}
+{% block header %}CREAR TIPO DE HABITACION{% endblock %}
+{% block lista_botones %}
+<a href='{% url "listar_habitaciones" %}'><button>Ir a Lista de Habitaciones</button></a>
+{% endblock %}
+{% block content %}
 <form method="post">
   {% csrf_token %} {{ form.as_p }}
   <button type="submit">Guardar</button>
 </form>
-<a href='{% url "listar_habitaciones" %}'>
-  <button>Ir a Lista de Habitaciones</button>
-</a>
+{% endblock %}

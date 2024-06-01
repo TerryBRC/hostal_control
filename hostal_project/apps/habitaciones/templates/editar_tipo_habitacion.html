@@ -1,9 +1,13 @@
-<h1>ACTUALIZAR TIPO HABITACION</h1>
-<hr />
+{% extends "base.html" %}
+{% block title %}Actualizar Tipo de Habitación{% endblock %}
+{% block header %}ACTUALIZAR TIPO HABITACION{% endblock %}
+{% block lista_botones %}
+  <a href='{% url "listar_tipo_habitaciones" %}'><button>Ir a tipos de habitacion</button></a>
+{% endblock %}
+{% block content %}
 <form method="POST">
-  {% csrf_token %} {{form}}
+  {% csrf_token %} {{form.as_p}}
   <input type="submit" value="Actualizar" />
 </form>
-<a href='{% url "listar_tipo_habitaciones" %}'
-  ><button>Ir a tipos de habitacion</button></a
->
+{% endblock %}
+

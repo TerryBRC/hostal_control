@@ -1,9 +1,11 @@
-<h1>Crear Rol con Permiso</h1>
-<a href='{% url "listar_rolpermisos" %}'
-  ><button>Ir a Lista de permisos</button>
-</a>
-<hr />
+{% block title %}Crear Rol con Permiso{% endblock %}
+{% block header %}{% endblock %}
+{% block lista_botones %}
+<a href='{% url "listar_rolpermisos" %}'><button>Ir a Lista de permisos</button></a>
+{% endblock %}
+{% block content %}
 <form method="POST">
   {% csrf_token %} {{form.as_p}}
   <input type="submit" value="Guardar" />
 </form>
+{% endblock %} 

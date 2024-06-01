@@ -1,10 +1,13 @@
-<h1>INFORMACION DEL PERMISO</h1>
-<hr />
+{% block title %}Info Permiso{% endblock %}
+{% block header %}INFORMACION DEL PERMISO{% endblock %}
+{% block lista_botones %}
+<a href='{% url "listar_permisos" %}'><button>Ir a Lista de permisos</button></a>
+<a href='{% url "actualizar_permiso" permiso.id %}'><button>Actualizar</button></a>
+<a href='{% url "eliminar_permiso" permiso.id %}'><button>Eliminar</button></a>
+{% endblock %}
+{% block content %}
 <h3>Permiso:</h3>
 <p>{{permiso.nombre_permiso}}</p>
 <h3>Descripcion:</h3>
 <p>{{permiso.descripcion}}</p>
-
-<a href='{% url "listar_permisos" %}'><button>Ir a Lista de permisos</button></a>
-<a href='{% url "actualizar_permiso" permiso.id %}'><button>Actualizar</button></a>
-<a href='{% url "eliminar_permiso" permiso.id %}'><button>Eliminar</button></a>
+{% endblock %} 
