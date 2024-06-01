@@ -1,20 +1,24 @@
-<h1>LISTA DE PERMISOS DE CADA ROL</h1>
+{% extends "base.html" %}
+{% block header %}LISTA DE PERMISOS DE CADA ROL{% endblock %}
+{% block lista_botones %}
 <a href='{% url "crear_rolpermiso" %}'><button>Ir a Crear Rol-Permiso</button></a>
 <a href='{% url "listar_roles" %}'> <button>Ir a Roles</button></a>
 <a href='{% url "listar_permisos" %}'> <button>Ir a Permisos</button></a>
-
-<hr>
-<div style="display: flex">
+{% endblock %}
+{% block content %}
+<div style="display: flex;flex-wrap: wrap;">
   {% for rol, permisos in roles_permisos_dict.items %}
+  <div style="flex: 1 0 10%;">
   <strong>{{ rol }}</strong>
-  <ul>
     {% for permiso_info in permisos %}
-    <li>
+    <ul>
       <a href="{% url 'ver_rolpermiso' permiso_info.id %}">
         {{ permiso_info.permiso }}
       </a>
-    </li>
+    </ul>
     {% endfor %}
-  </ul>
+  </div>
   {% endfor %}
 </div>
+<a href='{% url "index" %}'><button>Home</button></a>   
+{% endblock %}

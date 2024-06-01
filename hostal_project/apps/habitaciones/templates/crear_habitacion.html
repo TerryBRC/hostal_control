@@ -1,8 +1,13 @@
-<h1>Crear Habitación</h1>
+{% extends "base.html" %}
+{% block header %}CREAR HABITACION{% endblock %}
+{% block lista_botones %}
+<a href='{% url "listar_habitaciones" %}'>
+  <button>Ir a Lista de Habitaciones</button>
+</a>
+{% endblock %}
+{% block content %}
 <form method="post">
   {% csrf_token %} {{ form.as_p }}
   <button type="submit">Guardar</button>
 </form>
-<a href='{% url "listar_habitaciones" %}'>
-  <button>Ir a Lista de Habitaciones</button>
-</a>
+{% endblock %}

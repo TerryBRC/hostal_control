@@ -1,16 +1,10 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Principal</title>
-  </head>
-  <body>
-    <h1>Bienvenido a Hostal Control</h1>
-    <h3>Lista de Modelos</h3>
-    <ul>
-      <li><a href="{% url 'listar_roles' %}">Roles</a></li>
-      <li><a href="{% url 'listar_habitaciones' %}">Habitaciones</a></li>
-    </ul>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block title %}Principal{% endblock %}
+{% block header %}Bienvenidos{% endblock %}
+{% block lista_botones %}
+<a href="{% url 'listar_roles' %}"><button>Roles</button></a>
+<a href="{% url 'listar_habitaciones' %}"><button>Habitaciones</button></a>
+{% endblock %}
+{% block content %}
+    
+{% endblock %}
