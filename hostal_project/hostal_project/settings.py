@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'apps.roles',
     'apps.usuarios',
 
+    'django_plotly_dash',
+
 
 ]
 
