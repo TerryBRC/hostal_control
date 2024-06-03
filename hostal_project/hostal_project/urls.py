@@ -7,4 +7,5 @@ urlpatterns = [
     path("", views.index, name="index"),
     path('', include('apps.roles.urls')),
     path('', include('apps.habitaciones.urls')),
+    path('',include('apps.usuarios.urls')),
 ]

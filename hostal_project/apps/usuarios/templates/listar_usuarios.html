@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}Listar Usuarios{% endblock %}
+
+{% block header %}LISTA DE USUARIOS{% endblock header %}
+
+
+{% block formtitle %}Crear Usuario{% endblock formtitle %}
+{% block formurl %}{% url 'crear_usuario'%}{% endblock formurl %}
+{% block formvaluebutton %}Guardar{% endblock formvaluebutton %}
+{% block inputsubmit %}<input type="submit" value="Guardar">{% endblock inputsubmit %}
+
+
+{% block tableheaders %}
+    <tr>
+        {% for header in headers %}
+            <th scope="col">{{ header }}</th>
+        {% endfor %}
+        <th colspan='2'>Acciones</th>
+    </tr>
+{% endblock tableheaders %}
+
+{% block tablerows %}
+    {% for us in usuarios %}
+    <tr>
+        <td>{{ us.nombre }}</td>
+        <td>{{ us.apellido }}</a></td>
+        <td>{{ us.correo_electronico }}</td>
+        <td>{{ us.rol }}</td>
+        <td>
+            {% if us.activo %}
+                Activo
+            {% else %}
+                No Activo
+            {% endif %}
+        </td>
+        <td>
+            <form action="{% url 'eliminar_usuario' us.id %}" method='POST'>
+                {% csrf_token %}
+                <button class="btn btn-danger" onclick="return confirm('¿Deseas eliminar el usuario?')">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+            </form>
+        </td>
+        <td>
+            <a href="{% url 'editar_usuario' id=us.id %}" class="btn btn-warning">
+                <i class="fa-solid fa-edit"></i>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+{% endblock tablerows %}

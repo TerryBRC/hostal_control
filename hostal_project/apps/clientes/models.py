@@ -8,6 +8,8 @@ class Cliente(models.Model):
     telefono = models.CharField(max_length=20)
     correo_electronico = models.EmailField(unique=True)
     fecha_registro = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        db_table= 'cliente'
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"

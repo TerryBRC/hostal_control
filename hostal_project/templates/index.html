@@ -1,10 +1,8 @@
-{% extends "table_base.html" %}
+{% extends "base.html" %}
 {% block title %}Principal{% endblock %}
 {% block header %}Bienvenidos{% endblock %}
 {% block lista_botones %}
-<a href="{% url 'listar_roles' %}"><button>Roles</button></a>
-<a href="{% url 'listar_habitaciones' %}"><button>Habitaciones</button></a>
-{% endblock %}
-{% block content %}
-    
+<a href="{% url 'listar_roles' %}"><button class="btn btn-outline-primary">Roles</button></a>
+<a href="{% url 'listar_habitaciones' %}"><button class="btn btn-outline-primary">Habitaciones</button></a>
+<a href="{% url 'usuarios' %}"><button class="btn btn-outline-primary">Usuarios</button></a>
 {% endblock %}
