@@ -6,7 +6,7 @@ class Cliente(models.Model):
     apellido = models.CharField(max_length=100)
     direccion = models.CharField(max_length=255)
     telefono = models.CharField(max_length=20)
-    correo_electronico = models.EmailField(unique=True)
+    correo_electronico = models.EmailField(unique=True,null=True)
     fecha_registro = models.DateTimeField(auto_now_add=True)
     class Meta:
         db_table= 'cliente'

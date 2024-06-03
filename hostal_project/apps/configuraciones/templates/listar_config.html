@@ -24,7 +24,7 @@
         <td>
             <form action="{% url 'eliminar_config' cn.id %}" method='POST'>
                 {% csrf_token %}
-                <button class="btn btn-danger" onclick="return confirm('¿Deseas eliminar el usuario?')">
+                <button class="btn btn-danger" onclick="return confirm('¿Deseas eliminar?')">
                     <i class="fa-solid fa-trash"></i>
                 </button>
             </form>

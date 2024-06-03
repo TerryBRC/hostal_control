@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Listar Usuarios{% endblock %}
+{% block title %}Listar Clientes{% endblock %}
 
-{% block header %}LISTA DE USUARIOS{% endblock header %}
+{% block header %}LISTA DE CLIENTES{% endblock header %}
 
 
-{% block formtitle %}Crear Usuario{% endblock formtitle %}
-{% block formurl %}{% url 'crear_usuario'%}{% endblock formurl %}
+{% block formtitle %}Crear Cliente{% endblock formtitle %}
+{% block formurl %}{% url 'crear_cliente'%}{% endblock formurl %}
 {% block inputsubmit %}<input type="submit" value="Guardar">{% endblock inputsubmit %}
 
 
@@ -19,21 +19,14 @@
 {% endblock tableheaders %}
 
 {% block tablerows %}
-    {% for us in usuarios %}
+    {% for cl in clientes %}
     <tr>
-        <td>{{ us.nombre }}</td>
-        <td>{{ us.apellido }}</a></td>
-        <td>{{ us.correo_electronico }}</td>
-        <td>{{ us.rol }}</td>
+        <td>{{ cl.nombre }}</td>
+        <td>{{ cl.apellido }}</a></td>
+        <td>{{ cl.direccion }}</a></td>
+        <td>{{ cl.correo_electronico }}</td>
         <td>
-            {% if us.activo %}
-                Activo
-            {% else %}
-                No Activo
-            {% endif %}
-        </td>
-        <td>
-            <form action="{% url 'eliminar_usuario' us.id %}" method='POST'>
+            <form action="{% url 'eliminar_cliente' cl.id %}" method='POST'>
                 {% csrf_token %}
                 <button class="btn btn-danger" onclick="return confirm('¿Deseas eliminar?')">
                     <i class="fa-solid fa-trash"></i>
@@ -41,7 +34,7 @@
             </form>
         </td>
         <td>
-            <a href="{% url 'editar_usuario' id=us.id %}" class="btn btn-warning">
+            <a href="{% url 'editar_cliente' id=cl.id %}" class="btn btn-warning">
                 <i class="fa-solid fa-edit"></i>
             </a>
         </td>

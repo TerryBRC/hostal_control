@@ -9,4 +9,6 @@ urlpatterns = [
     path('', include('apps.habitaciones.urls')),
     path('',include('apps.usuarios.urls')),
     path('',include('apps.configuraciones.urls')),
+    path('',include('apps.clientes.urls')),
+    path('',include('apps.reservas.urls')),
 ]
