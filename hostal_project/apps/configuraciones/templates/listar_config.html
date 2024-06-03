@@ -1,13 +1,11 @@
 {% extends "base.html" %}
-{% block title %}Listar Usuarios{% endblock %}
+{% block title %}Configuraciones{% endblock %}
 
-{% block header %}LISTA DE USUARIOS{% endblock header %}
+{% block header %}LISTA DE CONFIGURACIONES{% endblock header %}
 
-
-{% block formtitle %}Crear Usuario{% endblock formtitle %}
-{% block formurl %}{% url 'crear_usuario'%}{% endblock formurl %}
+{% block formtitle %}Crear Configuración{% endblock formtitle %}
+{% block formurl %}{% url 'crear_config' %}{% endblock formurl %}
 {% block inputsubmit %}<input type="submit" value="Guardar">{% endblock inputsubmit %}
-
 
 {% block tableheaders %}
     <tr>
@@ -19,21 +17,12 @@
 {% endblock tableheaders %}
 
 {% block tablerows %}
-    {% for us in usuarios %}
+    {% for cn in config %}
     <tr>
-        <td>{{ us.nombre }}</td>
-        <td>{{ us.apellido }}</a></td>
-        <td>{{ us.correo_electronico }}</td>
-        <td>{{ us.rol }}</td>
+        <td>{{ cn.clave }}</td>
+        <td>{{ cn.valor }}</a></td>
         <td>
-            {% if us.activo %}
-                Activo
-            {% else %}
-                No Activo
-            {% endif %}
-        </td>
-        <td>
-            <form action="{% url 'eliminar_usuario' us.id %}" method='POST'>
+            <form action="{% url 'eliminar_config' cn.id %}" method='POST'>
                 {% csrf_token %}
                 <button class="btn btn-danger" onclick="return confirm('¿Deseas eliminar el usuario?')">
                     <i class="fa-solid fa-trash"></i>
@@ -41,7 +30,7 @@
             </form>
         </td>
         <td>
-            <a href="{% url 'editar_usuario' id=us.id %}" class="btn btn-warning">
+            <a href="{% url 'editar_config' id=cn.id %}" class="btn btn-warning">
                 <i class="fa-solid fa-edit"></i>
             </a>
         </td>

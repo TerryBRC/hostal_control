@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('apps.roles.urls')),
     path('', include('apps.habitaciones.urls')),
     path('',include('apps.usuarios.urls')),
+    path('',include('apps.configuraciones.urls')),
 ]
