@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<table class="table table-hover w-75 mx-auto text-center">
+    <thead>
+        <tr>
+            {% block tableheaders %}
+            {% endblock %}
+        </tr>
+      </thead>
+    <tbody>
+      {% block tablerows %}{% endblock %}
+    </tbody>
+  </table>
+{% endblock %}

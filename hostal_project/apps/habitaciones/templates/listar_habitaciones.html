@@ -1,3 +1,4 @@
+{% extends "table_base.html" %}
 {% block title %}Listar Habitaciones{% endblock %}
 
 {% block header %}HABITACIONES{% endblock %}
@@ -7,15 +8,21 @@
 <a href='{% url "listar_tipo_habitaciones" %}'><button>Ir a Tipo de Habitacion</button></a>
 {% endblock %}
 
-{% block content %}
-<ul>
-  {% for h in habitaciones %}
-  <li>
-    <a href="{% url 'ver_habitacion' h.id %}">
-      {{h.numero_habitacion}} - {% if h.disponible %} Disponible {% else %} No Disponible {% endif %}</a>
-  </li>
+{% block tableheaders %}
+{{ habitaciones.numero_habitacion}}
+  {% for header in headers %}
+      <th scope="col">{{ header }}</th>
   {% endfor %}
-</ul>
 {% endblock %}
 
-
+{% block tablerows %}
+{% for h in habitaciones %}
+    <tr>
+      <td><a href="{% url 'ver_habitacion' h.id %}">{{h.numero_habitacion}}</a></td> 
+      <td>{{h.tipo_habitacion}}</td> 
+      <td>{{h.capacidad_maxima}}</td> 
+      <td>{{h.precio_por_noche}}</td> 
+      <td>{% if h.disponible %} Disponible {% else %} No Disponible {% endif %}</td>  
+    </tr>
+    {% endfor %}
+{% endblock %}

@@ -7,7 +7,12 @@ from .forms import HabitacionForm, TipoHabitacionForm
 
 def listar_habitaciones(request):
     habitaciones = Habitacion.objects.all()
-    return render(request, 'listar_habitaciones.html', {'habitaciones': habitaciones})
+    headers = ['#',
+'Tipo',
+'Capacidad',
+'Precio x noche',
+'Dsiponible']
+    return render(request, 'listar_habitaciones.html', {'habitaciones': habitaciones,'headers':headers})
 
 
 def crear_habitacion(request):
@@ -49,7 +54,8 @@ def eliminar_habitacion(request, pk):
 
 def listar_tipo_habitaciones(request):
     tipo_habitaciones = TipoHabitacion.objects.all()
-    return render(request, 'listar_tipo_habitaciones.html', {'tipo_habitaciones': tipo_habitaciones})
+    headers = ["Tipo de Habitación","Descripción"]
+    return render(request, 'listar_tipo_habitaciones.html', {'tipo_habitaciones': tipo_habitaciones,'headers':headers})
 
 
 def crear_tipo_habitacion(request):

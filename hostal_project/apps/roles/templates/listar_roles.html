@@ -1,18 +1,28 @@
-{% extends "base.html" %}
+{% extends "table_base.html" %}
+
 {% block title %}Lista Roles{% endblock %}
+
 {% block header %}LISTA DE ROLES{% endblock %}
+
 {% block lista_botones %}
 <a href='{% url "crear_rol" %}'> <button>Ir a Crear Rol</button></a>
 <a href='{% url "listar_rolpermisos" %}'> <button>Ir a Rol - Permiso</button></a>
 <a href='{% url "listar_permisos" %}'> <button>Ir a Permisos</button></a>
 {% endblock %}
-{% block content %}
 
 
-  {% for rol in roles %}
-<ul><a href="{% url 'ver_rol' rol.id %}"> {{rol.nombre_rol}}</a></ul>
+{% block tableheaders %}
+  {% for header in headers %}
+      <th scope="col">{{ header }}</th>
   {% endfor %}
+{% endblock %}
 
-
-<a href='{% url "index" %}'> <button>Home</button></a>     
+{% block tablerows %}
+    {% for rol in roles %}
+    <tr>
+        <td><a href="{% url 'ver_rol' rol.id %}">{{rol.id}}</a></td>
+        <td><a href="{% url 'ver_rol' rol.id %}">{{rol.nombre_rol}}</a></td>
+        <td>{{rol.descripcion}}</td>
+    </tr>
+    {% endfor %}
 {% endblock %}

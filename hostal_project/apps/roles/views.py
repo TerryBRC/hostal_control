@@ -9,7 +9,8 @@ def listar_roles(request):
     # Obtener todos los roles desde la base de datos
     roles = Rol.objects.all()
     # Renderizar el template 'roles/listar_roles.html' con la lista de roles
-    return render(request, 'listar_roles.html', {'roles': roles})
+    headers = ['ID', 'Nombre', 'Descripcion']  # define the headers
+    return render(request, 'listar_roles.html', {'roles': roles,'headers':headers})
 
 
 def crear_rol(request):
@@ -61,7 +62,8 @@ def eliminar_rol(request, rol_id):
 
 def listar_permisos(request):
     permisos = Permiso.objects.all()
-    return render(request, 'listar_permisos.html', {'permisos': permisos})
+    headers = ["Permiso","Descripción"]
+    return render(request, 'listar_permisos.html', {'permisos': permisos,'headers':headers})
 
 
 def crear_permiso(request):
@@ -105,15 +107,9 @@ def eliminar_permiso(request, permiso_id):
 
 def listar_rolpermisos(request):
     rolpermisos = RolPermiso.objects.select_related('rol', 'permiso').order_by('rol', 'permiso')
+    headers =["Rol","Permisos"]
 
-    roles_permisos_dict = {}
-    for rp in rolpermisos:
-        if rp.rol not in roles_permisos_dict:
-            roles_permisos_dict[rp.rol] = []
-        roles_permisos_dict[rp.rol].append(
-            {'permiso': rp.permiso, 'id': rp.id})
-
-    return render(request, 'listar_rp.html', {'roles_permisos_dict': roles_permisos_dict})
+    return render(request, 'listar_rp.html', {'rolpermisos':rolpermisos, 'headers':headers})
     # rolpermisos = RolPermiso.objects.all()
     # return render(request, 'listar_rp.html', {'rolpermisos': rolpermisos})
 

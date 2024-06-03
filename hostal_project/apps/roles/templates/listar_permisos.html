@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "table_base.html" %}
 {% block title %}Lista Permisos{% endblock %}
 {% block header %}LISTA DE PERMISOS{% endblock %}
 {% block lista_botones %}
@@ -6,12 +6,19 @@
 <a href='{% url "listar_roles" %}'> <button>Ir a Roles</button></a>
 <a href='{% url "listar_rolpermisos" %}'> <button>Ir a Rol-Permiso</button></a>
 {% endblock %}
-{% block content %}
 
-  {% for per in permisos %}
-  <ul><a href="{% url 'ver_permiso' per.id %}"> {{per.nombre_permiso}}</a></ul>
+{% block tableheaders %}
+{{ permisos.nombre_permiso }}
+  {% for header in headers %}
+      <th scope="col">{{ header }}</th>
   {% endfor %}
+{% endblock %}
 
-
-<a href='{% url "index" %}'><button>Home</button></a>
+{% block tablerows %}
+  {% for per in permisos %}
+    <tr>
+        <td><a href="{% url 'ver_permiso' per.id %}"> {{per.nombre_permiso}}</a></td>
+        <td>{{ per.descripcion }}</td>
+    </tr>
+    {% endfor %}
 {% endblock %}

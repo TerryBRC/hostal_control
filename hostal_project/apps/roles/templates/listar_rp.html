@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "table_base.html" %}
 {% block title %}Lista Rol-Permiso{% endblock %}
 {% block header %}LISTA DE PERMISOS DE CADA ROL{% endblock %}
 {% block lista_botones %}
@@ -6,20 +6,28 @@
 <a href='{% url "listar_roles" %}'> <button>Ir a Roles</button></a>
 <a href='{% url "listar_permisos" %}'> <button>Ir a Permisos</button></a>
 {% endblock %}
-{% block content %}
-<div style="display: flex;flex-wrap: wrap;">
-  {% for rol, permisos in roles_permisos_dict.items %}
-  <div style="flex: 1 0 10%;">
-  <strong>{{ rol }}</strong>
-    {% for permiso_info in permisos %}
-    <ul>
-      <a href="{% url 'ver_rolpermiso' permiso_info.id %}">
-        {{ permiso_info.permiso }}
-      </a>
-    </ul>
-    {% endfor %}
-  </div>
+
+{% block tableheaders %}
+  {% for header in headers %}
+      <th scope="col">{{ header }}</th>
   {% endfor %}
-</div>
-<a href='{% url "index" %}'><button>Home</button></a>   
+{% endblock %}
+
+{% block tablerows %}
+  {% for rp in rolpermisos %}
+    <tr>
+        <td><a href="{% url 'ver_rol' rp.id %}">{{ rp.rol }}</a></td>
+        <td>{{ rp.permiso }}</td>
+    </tr>
+    {% endfor %}
+{% endblock %}
+
+{% block extrainfo %}
+  <h3>Total de Roles-permisos</h3>
+  <ul>
+    {% regroup rolpermisos by rol as rol_groups %}
+    {% for group in rol_groups %}
+    <ul><strong>{{ group.grouper }}</strong> ({{ group.list|length }} permisos)</ul>
+    {% endfor %}
+  </ul>
 {% endblock %}
