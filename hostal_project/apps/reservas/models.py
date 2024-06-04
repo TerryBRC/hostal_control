@@ -18,6 +18,7 @@ class Reserva(models.Model):
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
     class Meta:
+        verbose_name_plural = 'Reservas'
         db_table='reserva'
 
     def __str__(self):
